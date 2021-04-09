@@ -13,10 +13,10 @@ read_medtronic_csv <- function(archivo, ...){
   bomba2 <- archivo[(blancas[3]+2):(blancas[4]-1)]
   
   bomba1 <- read.table(text=bomba1, header=TRUE, sep=sep)
-  bomba1 <- bomba1 %>%  remove_empty("cols")
+  bomba1 <- bomba1 %>% remove_empty("cols")
   
   bomba2 <- read.table(text=bomba2, header=TRUE, sep=sep)
-  bomba2 <- bomba2 %>%  remove_empty("cols")
+  bomba2 <- bomba2 %>% remove_empty("cols")
   
   return(list("subject" = subject, 
               "transactions" = bomba1, 
