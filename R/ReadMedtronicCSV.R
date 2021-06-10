@@ -21,7 +21,8 @@ read_medtronic_csv <- function(archivo, ...){
   transactions$Datetime  <- transactions$Date + transactions$Time
   transactions$Basal.Rate..U.h. <- gsub(",", ".", transactions$Basal.Rate..U.h.) %>% as.numeric()
   transactions$Bolus.Volume.Delivered..U. <- gsub(",", ".", transactions$Bolus.Volume.Delivered..U.) %>% as.numeric()
-
+  transactions$BWZ.Carb.Input..grams.<- gsub(",", ".",transactions$BWZ.Carb.Input..grams.) %>% as.numeric()
+  
   basal_rate <- transactions %>% 
     select(Date, Time, Datetime, Basal.Rate..U.h.) %>% 
     filter(!is.na(Basal.Rate..U.h.)) %>% 
