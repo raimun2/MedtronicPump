@@ -17,8 +17,8 @@ read_medtronic_csv <- function(archivo, ...){
   transactions <- read.table(text=transactions, header=TRUE, sep=sep)
   transactions <- transactions %>% remove_empty("cols")
   transactions$Date    <- transactions$Date %>% ymd()
-  transactions$Time    <- transactions$Time %>% hms()
-  transactions$Datetime  <- transactions$Date + transactions$Time
+  #transactions$Time    <- transactions$Time %>% hms()
+  transactions$Datetime  <- transactions$Date + ( transactions$Time %>% hms())
   transactions$Basal.Rate..U.h. <- gsub(",", ".", transactions$Basal.Rate..U.h.) %>% as.numeric()
   transactions$Bolus.Volume.Delivered..U. <- gsub(",", ".", transactions$Bolus.Volume.Delivered..U.) %>% as.numeric()
   transactions$BWZ.Carb.Input..grams.<- gsub(",", ".",transactions$BWZ.Carb.Input..grams.) %>% as.numeric()
@@ -52,8 +52,8 @@ read_medtronic_csv <- function(archivo, ...){
   readings <- read.table(text=readings, header=TRUE, sep=sep)
   readings <- readings %>% remove_empty("cols")
   readings$Date    <- readings$Date %>% ymd()
-  readings$Time    <- readings$Time %>% hms()
-  readings$Datetime  <- readings$Date + readings$Time
+  #readings$Time    <- readings$Time %>% hms()
+  readings$Datetime  <- readings$Date + (readings$Time %>% hms())
   readings$Sensor.Glucose..mg.dL. <- as.numeric(gsub(",",".",readings$Sensor.Glucose..mg.dL.))
   
   
